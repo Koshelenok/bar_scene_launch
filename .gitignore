@@ -1,1 +1,11 @@
-bar_scene_*
+# Клонируемые исходники (см. start-bar-scene.sh)
+/bar_scene_client/
+/bar_scene_ws_server/
+
+# Генерируется start-bar-scene.sh при каждом запуске
+/.local-docker/
+/.dockerignore
+/docker-compose.local.yml
+
+# Локальные оверрайды
+.env

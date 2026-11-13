@@ -9,13 +9,16 @@
 # после чего всегда собирает исходники из этих каталогов.
 #
 # Использование:
-#   ./run-local.sh            # собрать и запустить (по умолчанию)
-#   ./run-local.sh logs       # смотреть логи
-#   ./run-local.sh restart    # перезапустить
-#   ./run-local.sh down       # остановить и удалить контейнеры
+#   ./start-bar-scene.sh            # собрать и запустить (по умолчанию)
+#   ./start-bar-scene.sh logs       # смотреть логи
+#   ./start-bar-scene.sh restart    # перезапустить
+#   ./start-bar-scene.sh down       # остановить и удалить контейнеры
 #
-# Порт можно изменить: WEB_PORT=8090 ./run-local.sh
-# Репозитории: CLIENT_REPO=... SERVER_REPO=... ./run-local.sh
+# Порт можно изменить: WEB_PORT=8090 ./start-bar-scene.sh
+# Репозитории: CLIENT_REPO=... SERVER_REPO=... ./start-bar-scene.sh
+#
+# Файлы .dockerignore, docker-compose.local.yml и .local-docker/ генерируются
+# при каждом запуске и в репозиторий не попадают.
 
 set -euo pipefail
 
@@ -179,8 +182,8 @@ up() {
   echo "Клиент:  http://localhost:${WEB_PORT}/"
   echo "Хаб:     http://localhost:${WEB_PORT}/chatHub"
   echo
-  echo "Логи:    ./run-local.sh logs"
-  echo "Стоп:    ./run-local.sh down"
+  echo "Логи:    ./start-bar-scene.sh logs"
+  echo "Стоп:    ./start-bar-scene.sh down"
 }
 
 down() {
@@ -192,7 +195,7 @@ down() {
 
 logs() {
   check_requirements
-  [ -f "$COMPOSE_FILE" ] || fail "Сначала запусти ./run-local.sh"
+  [ -f "$COMPOSE_FILE" ] || fail "Сначала запусти ./start-bar-scene.sh"
   compose logs -f --tail=100
 }
 
